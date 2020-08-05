@@ -99,13 +99,20 @@
       fetch('http://52.136.120.54:5000/download?key='+key)
       .then(response => {
         // Inspect the headers in the response
-        filename = response.headers.get('content-disposition').split("=")[1];
+        if(response.headers.get('content-disposition').includes("=")){
+          filename = response.headers.get('content-disposition').split("=")[1];
+        }
         return response;})
       .then( res => res.blob() )
       .then( blob => {
           // var file = window.URL.createObjectURL(blob);
           // window.location.assign(file);
-          download(blob, filename, "application/octet-stream");
+          if(filename==''){
+            document.getElementById("getBtn2").innerText = 'no file found'
+          }else{
+            download(blob, filename, "application/octet-stream");
+          }
+          
       })
       ;
     }

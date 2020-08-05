@@ -28,6 +28,20 @@ def download_file():
 		os.chdir('../')
 		return 'Error!'
 
+
+@app.route('/lookup')
+def download_file():
+	os.chdir('.data')
+	key = request.args.get("key")
+	if os.path.isdir(str(key)):
+		os.chdir(str(key))
+		_tmp=os.listdir()[0]
+		os.chdir('../../')
+		return _tmp
+	else:
+		os.chdir('../')
+		return 'Error!'
+
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():

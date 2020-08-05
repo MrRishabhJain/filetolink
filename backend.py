@@ -30,7 +30,7 @@ def download_file():
 
 
 @app.route('/lookup')
-def download_file():
+def lookup_file():
 	os.chdir('.data')
 	key = request.args.get("key")
 	if os.path.isdir(str(key)):

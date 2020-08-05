@@ -14,13 +14,14 @@ def upload_file1():
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
 	if request.method == 'POST':
+		os.chdir('.data')
 		n=random.randint(1000,9999)
 		while os.path.isdir(str(n)):
 			n=random.randint(1000,9999)
 		os.mkdir(str(n))
 		f = request.files['file']
 		f.save(secure_filename(f.filename))
-		os.chdir('../')
+		os.chdir('../../')
 		return str(n)
 		
 if __name__ == '__main__':

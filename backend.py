@@ -22,6 +22,7 @@ def download_file():
 		os.chdir('../../')
 		r = make_response( resp )
 		r.mimetype = 'application/octet-stream'
+		r.headers["Access-Control-Expose-Headers"]="Content-Disposition"
 		return r
 	else:
 		return 'Error!'

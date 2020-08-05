@@ -33,7 +33,7 @@ def download_file():
 def upload_file():
 	if request.method == 'POST':
 		os.chdir('.data')
-		n=random.randint(1000,9999)
+		n=random.randint((9999999999999999999999999+1)/10,9999999999999999999999999)
 		while os.path.isdir(str(n)):
 			n=random.randint(1000,9999)
 		os.mkdir(str(n))

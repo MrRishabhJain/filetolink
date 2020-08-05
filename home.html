@@ -116,6 +116,7 @@
 
     function copyToClip(){
 
+      console.log('logpass',document.getElementById("logpass"))
       var copyText = document.getElementById("logpass");
       copyText.select();
       copyText.setSelectionRange(0, 99999); /*For mobile devices*/

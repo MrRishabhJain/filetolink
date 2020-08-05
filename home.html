@@ -76,13 +76,17 @@
     </div>
   </div>
   <script type="text/javascript">
+    var code=''
+
     console.log('getBtn',document.getElementById('getBtn'))
     function uploadFile() {
       if (document.getElementById("getBtn").innerText == "BROWSE") {
         document.getElementById('getFile').click()
-      } else {
+      } else if (document.getElementById("getBtn").innerText == "UPLOAD"){
         console.log('getBtn',document.getElementById('getBtn'))
         uploadFetch()
+      } else {
+        copyToClip()
       }
     }
 
@@ -100,11 +104,26 @@
       }).then((body) => {
         console.log('code', body)
         document.getElementById("fileName1").innerText = 'Your File Key is '+body;
+        code = body
+        document.getElementById("getBtn").innerText = 'copy key';
         // TODO handle body
       }).catch((error) => {
          console.log('err', body)
 	      // TODO handle error
       });
+    }
+
+    function copyToClip(){
+
+      var copyText = code;
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+
+      /* Alert the copied text */
+      alert("Copied the key: " + copyText.value);
     }
 
     function FileSelected(e) {

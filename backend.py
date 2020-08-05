@@ -13,10 +13,10 @@ def upload_file1():
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
-    if request.method == 'POST':
-    	n=random.randint(1000,9999)
-    	while os.path.isdir(str(n)):
-    		n=random.randint(1000,9999)
+	if request.method == 'POST':
+		n=random.randint(1000,9999)
+		while os.path.isdir(str(n)):
+			n=random.randint(1000,9999)
 		os.chdir(str(n))
 		f = request.files['file']
 		f.save(secure_filename(f.filename))

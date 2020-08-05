@@ -13,14 +13,17 @@ def upload_file1():
 
 @app.route('/download')
 def download_file():
+	os.chdir('.data')
 	key = request.args.get("key")
 	print(os.path.isdir(str(key)))
 	if os.path.isdir(str(key)):
 		os.chdir(str(n))
 		print(os.getcwd())
 		resp = send_file(os.listdir()[0], as_attachment=True)
-		os.chdir('../')
+		os.chdir('../../')
 		return resp
+	else:
+		return 'Error!'
 
 	
 @app.route('/uploader', methods = ['GET', 'POST'])

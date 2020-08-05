@@ -19,6 +19,7 @@ def upload_file():
 		while os.path.isdir(str(n)):
 			n=random.randint(1000,9999)
 		os.mkdir(str(n))
+		os.chdir(str(n))
 		f = request.files['file']
 		f.save(secure_filename(f.filename))
 		os.chdir('../../')

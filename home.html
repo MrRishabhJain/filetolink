@@ -119,8 +119,8 @@
 
       console.log('codeVar',document.getElementById("codeVar"))
       var text = document.getElementsByClassName('js-text');
-      text[0].select();
-      text[0].setSelectionRange(0, 99999); /*For mobile devices*/
+      text.select();
+      text.setSelectionRange(0, 99999); /*For mobile devices*/
 
       /* Copy the text inside the text field */
       document.execCommand("copy");

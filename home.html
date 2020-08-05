@@ -86,7 +86,7 @@
       .then(response => {
         // Inspect the headers in the response
         response.headers.forEach(console.log);
-        return response;}
+        return response;})
       .then( res => res.blob() )
       .then( blob => {
           // var file = window.URL.createObjectURL(blob);

@@ -82,11 +82,31 @@
       key = document.getElementById("logpass").value
       console.log("logpass",key)
       document.getElementById("getBtn2").innerText = 'Downloading'
-      fetch('http://52.136.120.54:5000/download?key='+key).then( res => res.blob() )
-  .then( blob => {
-    var file = window.URL.createObjectURL(blob);
-    window.location.assign(file);
-  });
+      fetch('http://52.136.120.54:5000/download?key='+key)
+      // .then( res => res.blob() )
+      // .then( blob => {
+      //     var file = window.URL.createObjectURL(blob);
+      //     window.location.assign(file);
+      // });
+      .then(response => {
+                console.log(JSON.stringify(response.headers));
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                var filename = "";
+                var disposition = response.headers['content-disposition'];
+                console.log(disposition);
+
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+                console.log(filename);
+                link.setAttribute('download', filename);
+                link.click();
+                window.URL.revokeObjectURL(url);
+            });
     }
 
     function uploadFile() {

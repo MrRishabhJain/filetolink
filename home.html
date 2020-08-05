@@ -84,7 +84,7 @@
       document.getElementById("getBtn2").innerText = 'Downloading'
       fetch('http://52.136.120.54:5000/download?key='+key)
       .then( res => {
-        console.log('res',res)
+        console.log('res',res.json())
         return res
       } )
       .then( res => res.blob() )

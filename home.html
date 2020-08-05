@@ -88,6 +88,7 @@
       //     var file = window.URL.createObjectURL(blob);
       //     window.location.assign(file);
       // });
+      .then(response => response.blob())
       .then(response => {
                 console.log('headers',JSON.stringify(response.headers));
                 const url = window.URL.createObjectURL(new Blob([response.data]));

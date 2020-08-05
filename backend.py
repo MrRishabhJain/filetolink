@@ -20,7 +20,9 @@ def download_file():
 		print('list',os.listdir())
 		resp = send_file('.data/'+str(key)+'/'+os.listdir()[0], as_attachment=True)
 		os.chdir('../../')
-		return resp
+		r = make_response( resp )
+		r.mimetype = 'application/octet-stream'
+		return r
 	else:
 		return 'Error!'
 

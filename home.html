@@ -87,6 +87,7 @@
     }
 
     function uploadFetch() {
+      document.getElementById("fileName1").innerText = 'Uploading file...'
       var input = document.querySelector('input[type="file"]')
       var data = new FormData()
       data.append('file', input.files[0])
@@ -98,7 +99,7 @@
         return resp.text();//.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
         console.log('code', body)
-        document.getElementById("fileName1").innerText = body;
+        document.getElementById("fileName1").innerText = 'Your File Key is '+body;
         // TODO handle body
       }).catch((error) => {
          console.log('err', body)

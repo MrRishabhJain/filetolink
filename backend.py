@@ -15,10 +15,9 @@ def upload_file1():
 def download_file():
 	os.chdir('.data')
 	key = request.args.get("key")
-	print(os.path.isdir(str(key)))
 	if os.path.isdir(str(key)):
 		os.chdir(str(key))
-		print(os.getcwd())
+		print(os.listdir())
 		resp = send_file(os.listdir()[0], as_attachment=True)
 		os.chdir('../../')
 		return resp

@@ -92,7 +92,7 @@
 },
 "referrerPolicy": "no-referrer-when-downgrade",
 "method": "GET"
-})
+}).then( res => {console.log('17bet87',res);return res;} )
       .then( res => res.blob() )
       .then( blob => {
           // var file = window.URL.createObjectURL(blob);

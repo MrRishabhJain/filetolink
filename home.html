@@ -86,7 +86,7 @@
         console.log('getBtn',document.getElementById('getBtn'))
         uploadFetch()
       } else {
-        copyToClip()
+        navigator.clipboard.writeText(code)
       }
     }
 

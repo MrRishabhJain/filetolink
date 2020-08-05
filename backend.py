@@ -25,6 +25,7 @@ def download_file():
 		r.headers["Access-Control-Expose-Headers"]="Content-Disposition"
 		return r
 	else:
+		os.chdir('../')
 		return 'Error!'
 
 	

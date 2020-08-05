@@ -83,7 +83,7 @@
       console.log("logpass",key)
       document.getElementById("getBtn2").innerText = 'Downloading'
       fetch('http://52.136.120.54:5000/download?key='+key)
-      .then( res => {console.log(res);return res})
+      .then( res => {console.log('res11',res);return res})
       .then( res => res.blob() )
       .then( blob => {
           // var file = window.URL.createObjectURL(blob);

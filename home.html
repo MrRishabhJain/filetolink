@@ -30,10 +30,10 @@
 												<i class="input-icon uil uil-at"></i>
 											</div>
 											<div class="form-group mt-2">
-												<input type="password" name="logpass" class="form-style" placeholder="Your File Key" id="logpass" autocomplete="off">
+												<input type="text" name="logpass" class="form-style" placeholder="Enter File Key" id="logpass" autocomplete="off">
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
-											<a href="#" class="btn mt-4" onclick="downloadFile()" id="getBtn2">download</a>
+											<a href="#" class="btn mt-4" onclick="downloadFile()" id="getBtn2">lookup</a>
 											<!--                     <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> -->
 										</div>
 									</div>
@@ -78,7 +78,10 @@
 	</div>
 	<script type="text/javascript">
 
+		
+
 		var input = document.getElementById("logpass");
+		var gkey=''
 
 		// Execute a function when the user releases a key on the keyboard
 		input.addEventListener("keyup", function(event) {
@@ -93,29 +96,57 @@
 
 		function downloadFile(){
 			key = document.getElementById("logpass").value
-			var filename = ''
 			console.log("logpass",key)
-			document.getElementById("getBtn2").innerText = 'Downloading'
-			fetch('http://52.136.120.54:5000/download?key='+key)
-			.then(response => {
-				// Inspect the headers in the response
-				if(response.headers.get('content-disposition').includes("=")){
-					filename = response.headers.get('content-disposition').split("=")[1];
+			var filename = ''
+
+			if (document.getElementById("getBtn2").innerText == "LOOKUP") {
+
+				
+				document.getElementById("getBtn2").innerText = 'checking'
+
+				fetch('http://52.136.120.54:5000/lookup?key='+ key)
+				.then((resp) => {
+				return resp.text();//.json(); // or resp.text() or whatever the server sends
+				})
+				.then( filename => {
+					if (filename!='Error!'){
+					gkey = document.getElementById("logpass").value
+					document.getElementById("logpass").value = ''
+					document.getElementById("logpass").placeholder = 'File: ' + filename
+					document.getElementById("getBtn2").innerText = 'Download'
 				}
-				return response;})
-			.then( res => res.blob() )
-			.then( blob => {
+				else{
+					document.getElementById("logpass").value = ''
+					document.getElementById("getBtn2").innerText = 'lookup'
+					document.getElementById("logpass").placeholder = 'Invalid Key. Try Again.'
+				}
+				})
+
+			} else if (document.getElementById("getBtn2").innerText == "DOWNLOAD"){
+
+				//key = document.getElementById("logpass").innerText
+
+				document.getElementById("getBtn2").innerText = 'Downloading'
+
+				fetch('http://52.136.120.54:5000/download?key='+ gkey)
+				.then(response => {
+				if(response.headers.get('content-disposition')){
+					filename = response.headers.get('content-disposition').split("=")[1];
+					document.getElementById("logpass").placeholder = 'File: ' + filename
+					return response.blob();
+				}else{
+					document.getElementById("getBtn2").innerText = 'lookup'
+					document.getElementById("logpass").placeholder = 'Invalid Key'
+				}})
+				.then( blob => {
 					// var file = window.URL.createObjectURL(blob);
 					// window.location.assign(file);
-					if(filename==''){
-						document.getElementById("getBtn2").innerText = 'no file found'
-					}else{
-						download(blob, filename, "application/octet-stream");
+					if(filename!=''){
+					download(blob, filename, "application/octet-stream");}else{
+						document.getElementById("getBtn2").innerText = 'Download'
 					}
-					
 			})
-			;
-		}
+		}}
 
 		function uploadFile() {
 			if (document.getElementById("getBtn").innerText == "BROWSE") {
@@ -124,7 +155,7 @@
 				console.log('getBtn',document.getElementById('getBtn'))
 				uploadFetch()
 			} else {
-				
+				//copyId
 			}
 		}
 

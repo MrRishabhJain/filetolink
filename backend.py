@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import random
@@ -10,6 +10,16 @@ CORS(app)
 @app.route('/upload')
 def upload_file1():
 	return render_template('home.html')
+
+@app.route('/download')
+def download_file():
+	key = request.args.get("key")
+	if os.path.isdir(str(key)):
+		os.chdir(str(n)) 
+		resp = send_file(os.listdir()[0], as_attachment=True)
+		os.chdir('../')
+		return resp
+
 	
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():

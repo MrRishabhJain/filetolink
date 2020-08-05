@@ -86,7 +86,7 @@
       fetch('http://52.136.120.54:5000/download?key='+key)
       .then(response => {
         // Inspect the headers in the response
-        filename = response.headers.get('content-disposition');
+        filename = response.headers.get('content-disposition').split("=")[1];
         console.log(' qe',filename)
         return response;})
       .then( res => res.blob() )

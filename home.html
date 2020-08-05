@@ -86,7 +86,11 @@
         console.log('getBtn',document.getElementById('getBtn'))
         uploadFetch()
       } else {
-        navigator.clipboard.writeText(code)
+        navigator.clipboard.writeText(code).then(function () {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+        });
       }
     }
 

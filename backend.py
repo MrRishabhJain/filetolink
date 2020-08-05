@@ -14,6 +14,7 @@ def upload_file1():
 @app.route('/download')
 def download_file():
 	key = request.args.get("key")
+	print(key)
 	if os.path.isdir(str(key)):
 		os.chdir(str(n)) 
 		resp = send_file(os.listdir()[0], as_attachment=True)

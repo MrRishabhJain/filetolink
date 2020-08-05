@@ -14,6 +14,7 @@ def upload_file1():
 @app.route('/download')
 def download_file():
 	key = request.args.get("key")
+	print(os.path.isdir(str(key)))
 	if os.path.isdir(str(key)):
 		os.chdir(str(n))
 		print(os.getcwd())

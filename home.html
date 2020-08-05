@@ -79,13 +79,14 @@
   <script type="text/javascript">
 
     function downloadFile(){
-      var saveAs = require('file-saver');
       key = document.getElementById("logpass").value
       console.log("logpass",key)
       document.getElementById("getBtn2").innerText = 'Downloading'
-      fetch('http://52.136.120.54:5000/download?key='+key)
-      .then( res => res.blob() )
-      .then(blob => saveAs(blob, 'test.csv'));
+      fetch('http://52.136.120.54:5000/download?key='+key).then( res => res.blob() )
+  .then( blob => {
+    var file = window.URL.createObjectURL(blob);
+    window.location.assign(file);
+  });
     }
 
     function uploadFile() {

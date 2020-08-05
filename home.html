@@ -85,8 +85,11 @@
       fetch('http://52.136.120.54:5000/download?key='+key).then( res => res.blob() )
   .then( blob => {
     var file = window.URL.createObjectURL(blob);
-    window.location.assign(file);
-  });
+    //window.location.assign(file);
+  }).then(url => {
+        window.open(url, '_blank');
+        URL.revokeObjectURL(url);
+    });
     }
 
     function uploadFile() {

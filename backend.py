@@ -15,7 +15,7 @@ def upload_file1():
 def upload_file():
     if request.method == 'POST':
     	n=random.randint(1000,9999)
-    	while(os.path.isdir(str(n)):
+    	while os.path.isdir(str(n)):
     		n=random.randint(1000,9999)
 		os.chdir(str(n))
 		f = request.files['file']

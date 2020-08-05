@@ -17,7 +17,7 @@ def download_file():
 	key = request.args.get("key")
 	if os.path.isdir(str(key)):
 		os.chdir(str(key))
-		print(os.listdir())
+		print('list',os.listdir())
 		resp = send_file(os.listdir()[0], as_attachment=True)
 		os.chdir('../../')
 		return resp

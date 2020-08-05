@@ -86,11 +86,7 @@
         console.log('getBtn',document.getElementById('getBtn'))
         uploadFetch()
       } else {
-        navigator.clipboard.writeText(code).then(function () {
-            console.log('Async: Copying to clipboard was successful!');
-        }, function (err) {
-            console.error('Async: Could not copy text: ', err);
-        });
+        copyToClip()
       }
     }
 
@@ -108,6 +104,7 @@
       }).then((body) => {
         console.log('code', body)
         document.getElementById("fileName1").innerText = 'Your File Key is '+body;
+        document.getElementById("logpass").innerText = body;
         code = body
         document.getElementById("getBtn").innerText = 'copy key';
         // TODO handle body
@@ -119,7 +116,7 @@
 
     function copyToClip(){
 
-      var copyText = code;
+      var copyText = document.getElementById("logpass");
       copyText.select();
       copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 

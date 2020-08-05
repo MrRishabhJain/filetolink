@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body><a href="https://front.codes/" class="logo" target="_blank">
+    <img src="https://assets.codepen.io/1462889/fcy.png" alt="">
+  </a>
+
+  <div class="section">
+    <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+          <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <h6 class="mb-0 pb-3"><span>Download</span><span>Upload</span></h6>
+            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+            <label for="reg-log"></label>
+            <div class="card-3d-wrap mx-auto">
+              <div class="card-3d-wrapper">
+                <div class="card-front">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Download File</h4>
+                      <div class="form-group">
+                        <!--                       <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off"> -->
+                        <i class="input-icon uil uil-at"></i>
+                      </div>
+                      <div class="form-group mt-2">
+                        <input type="password" name="logpass" class="form-style" placeholder="Your File Key" id="logpass" autocomplete="off">
+                        <i class="input-icon uil uil-lock-alt"></i>
+                      </div>
+                      <a href="#" class="btn mt-4">download</a>
+                      <!--                     <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="card-back">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Upload File</h4>
+                      <form id="myFormId">
+<!--                         action="http://52.136.120.54:5000/uploader" method="POST" enctype="multipart/form-data"> -->
+                        <div class="form-group" style>
+                          <input type="file" name="file" id="getFile" onchange="FileSelected()" style="display:none">
+                          <div class="form-style" style="text-align:left; opacity: 0.7"> <span id="fileName1">Drag file here</span></div>
+                          <!--                                             <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off"> -->
+                          <i class="input-icon uil uil-upload"></i>
+                        </div>
+                        <!--                     <div class="form-group mt-2">
+                      <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+                      <body>
+  <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Your text here</button>
+  
+</body>
+                      <i class="input-icon uil uil-at"></i>
+                    </div> -->
+                        <!--                     <div class="form-group mt-2">
+                      <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+                      <i class="input-icon uil uil-lock-alt"></i> 
+                    </div> -->
+                        <a href="#" class="btn mt-4" onclick="uploadFile()" id="getBtn">browse</a>
+                        <!--                       <input href="#" class="btn mt-4" type = "submit" value='upload'/> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    console.log('getBtn',document.getElementById('getBtn'))
+    function uploadFile() {
+      if (document.getElementById("getBtn").innerText == "BROWSE") {
+        document.getElementById('getFile').click()
+      } else {
+        console.log('getBtn',document.getElementById('getBtn'))
+        uploadFetch()
+      }
+    }
+
+    function uploadFetch() {
+      var input = document.querySelector('input[type="file"]')
+      var data = new FormData()
+      data.append('file', input.files[0])
+      // data.append('user', 'hubot')
+      fetch('http://52.136.120.54:5000/uploader', {
+        method: 'POST',
+        body: data
+      }).then((resp) => {
+        return resp.text();//.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        console.log('resp', body)
+        // TODO handle body
+      }).catch((error) => {
+         console.log('err', body)
+	      // TODO handle error
+      });
+    }
+
+    function FileSelected(e) {
+      file = document.getElementById('getFile').files[document.getElementById('getFile').files.length - 1];
+      document.getElementById("fileName1").innerText = file.name;
+      document.getElementById("getBtn").innerText = 'upload';
+    }
+  </script>
+</body>
+
+</html>

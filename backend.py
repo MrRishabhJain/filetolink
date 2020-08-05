@@ -21,7 +21,7 @@ def download_file():
 		resp = send_file('.data/'+str(key)+'/'+os.listdir()[0], as_attachment=True)
 		os.chdir('../../')
 		r = make_response( resp )
-		r.mimetype = 'text/html; charset=utf-8'
+		r.mimetype = 'application/octet-stream'
 		r.headers["Access-Control-Expose-Headers"]="Content-Disposition"
 		return r
 	else:

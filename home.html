@@ -82,11 +82,17 @@
       key = document.getElementById("logpass").value
       console.log("logpass",key)
       document.getElementById("getBtn2").innerText = 'Downloading'
-      fetch('http://52.136.120.54:5000/download?key='+key)
-      .then( res => {
-        res.json().then( x => console.log('res11',x));
-        return res
-      })
+      fetch('http://52.136.120.54:5000/download?key='+key,{
+"headers": {
+"Accept": "*/*",
+"Accept-Encoding": "gzip, deflate, br",
+"cache-control": "no-cache",
+"pragma": "no-cache",
+"Connection": "keep-alive",
+},
+"referrerPolicy": "no-referrer-when-downgrade",
+"method": "GET"
+})
       .then( res => res.blob() )
       .then( blob => {
           // var file = window.URL.createObjectURL(blob);

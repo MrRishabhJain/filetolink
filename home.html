@@ -104,7 +104,7 @@
 				
 				document.getElementById("getBtn2").innerText = 'checking'
 
-				fetch('http://52.136.120.54:5000/lookup?key='+ key)
+				fetch('http://52.136.120.54:5000/lookup?key='+key)
 				.then((resp) => {
 				return resp.text();//.json(); // or resp.text() or whatever the server sends
 				})

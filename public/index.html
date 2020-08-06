@@ -109,6 +109,7 @@
 			if (document.getElementById("getBtn2").innerText == "LOOKUP") {
 
 				var stat = 0
+				document.getElementById("logpass").placeholder = 'Loading...'
 				document.getElementById("getBtn2").innerText = 'checking'
 				fetch('http://52.136.120.54:5000/lookup?key='+key)
 				.then((resp) => {

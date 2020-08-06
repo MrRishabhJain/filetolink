@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():  # pragma: no cover
-    content = open('public/home.html').read()
+    content = open('public/index.html').read()
     return Response(content, mimetype="text/html")
 
 @app.route('/home.css', methods=['GET'])

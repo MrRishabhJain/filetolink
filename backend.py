@@ -8,8 +8,13 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/', methods=['GET'])
-def metrics():  # pragma: no cover
+def home():  # pragma: no cover
     content = open('public/home.html').read()
+    return Response(content, mimetype="text/html")
+
+@app.route('/home.css', methods=['GET'])
+def css():  # pragma: no cover
+    content = open('public/home.css').read()
     return Response(content, mimetype="text/html")
 
 @app.route('/upload')

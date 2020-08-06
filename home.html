@@ -97,6 +97,7 @@
 		function NameSelected(){
 			gkey=''
 			document.getElementById("getBtn2").innerText = 'lookup'
+			document.getElementById("logpass").placeholder = 'Enter File Key'
 		}
 
 		function downloadFile(){
@@ -147,7 +148,9 @@
 					// var file = window.URL.createObjectURL(blob);
 					// window.location.assign(file);
 					if(filename!=''){
-					download(blob, filename, "application/octet-stream");}else{
+					download(blob, filename, "application/octet-stream");
+					document.getElementById("getBtn2").innerText = 'Downloaded';
+				}else{
 						document.getElementById("getBtn2").innerText = 'Download'
 					}
 			})

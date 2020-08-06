@@ -171,7 +171,8 @@
 				console.log('getBtn',document.getElementById('getBtn'))
 				uploadFetch()
 			} else {
-				//copyId
+				document.getElementById("getBtn").innerText = "copy link"
+				navigator.clipboard.writeText('https://mrrishabhjain.github.io/filetolink/?key='+gkey)
 			}
 		}
 
@@ -190,7 +191,7 @@
 				console.log('code', body)
 				document.getElementById("fileName1").innerText = 'Your File Key is '+body;
 				// document.getElementById("codeVar").innerHtml = body;
-				code = body
+				gkey = body
 				document.getElementById("getBtn").innerText = 'uploaded';
 				// TODO handle body
 			}).catch((error) => {

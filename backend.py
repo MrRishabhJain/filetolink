@@ -7,6 +7,11 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/', methods=['GET'])
+def metrics():  # pragma: no cover
+    content = get_file('public/home.html')
+    return Response(content, mimetype="text/html")
+
 @app.route('/upload')
 def upload_file1():
 	return render_template('home.html')

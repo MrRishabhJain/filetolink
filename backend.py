@@ -15,7 +15,7 @@ def home():  # pragma: no cover
 @app.route('/home.css', methods=['GET'])
 def css():  # pragma: no cover
     content = open('public/home.css').read()
-    return Response(content, mimetype="text/html")
+    return Response(content, mimetype="stylesheet")
 
 @app.route('/upload')
 def upload_file1():

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, make_response
+from flask import Flask, render_template, request, send_file, make_response, Response
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import random

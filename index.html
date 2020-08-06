@@ -170,8 +170,8 @@
 			} else if (document.getElementById("getBtn").innerText == "UPLOAD"){
 				console.log('getBtn',document.getElementById('getBtn'))
 				uploadFetch()
-			} else {
 				document.getElementById("getBtn").innerText = "copy link"
+			} else {
 				navigator.clipboard.writeText('https://mrrishabhjain.github.io/filetolink/?key='+gkey)
 			}
 		}

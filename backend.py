@@ -49,7 +49,7 @@ def lookup_file():
 	key = request.args.get("key")
 	if os.path.isdir(str(key)):
 		os.chdir(str(key))
-		if len(os.listdir())>0
+		if len(os.listdir())>0:
 			_tmp=os.listdir()[0]
 			os.chdir('../../')
 			return _tmp

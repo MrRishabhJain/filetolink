@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, make_response, get_file
+from flask import Flask, render_template, request, send_file, make_response
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import random
@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route('/', methods=['GET'])
 def metrics():  # pragma: no cover
-    content = get_file('public/home.html')
+    content = open('public/home.html').read()
     return Response(content, mimetype="text/html")
 
 @app.route('/upload')

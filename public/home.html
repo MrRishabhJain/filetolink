@@ -30,7 +30,7 @@
 												<i class="input-icon uil uil-at"></i>
 											</div>
 											<div class="form-group mt-2">
-												<input type="text" name="logpass" class="form-style" placeholder="Enter File Key" id="logpass" autocomplete="off">
+												<input type="text" name="logpass" class="form-style" placeholder="Enter File Key" id="logpass" onfocus="NameSelected()" autocomplete="off">
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
 											<a href="#" class="btn mt-4" onclick="downloadFile()" id="getBtn2">lookup</a>
@@ -94,6 +94,12 @@
 			}
 		});
 
+		function NameSelected(){
+			gkey=''
+			document.getElementById("getBtn2").innerText = 'lookup'
+			document.getElementById("logpass").placeholder = 'Enter File Key'
+		}
+
 		function downloadFile(){
 			key = document.getElementById("logpass").value
 			console.log("logpass",key)
@@ -101,15 +107,15 @@
 
 			if (document.getElementById("getBtn2").innerText == "LOOKUP") {
 
-				
+				var stat = 0
 				document.getElementById("getBtn2").innerText = 'checking'
-
 				fetch('http://52.136.120.54:5000/lookup?key='+key)
 				.then((resp) => {
-				return resp.text();//.json(); // or resp.text() or whatever the server sends
+					stat = resp.status
+					return resp.text();//.json(); // or resp.text() or whatever the server sends
 				})
 				.then( filename => {
-					if (filename!='Error!'){
+					if (filename!='Error!' && stat==200){
 					gkey = document.getElementById("logpass").value
 					document.getElementById("logpass").value = ''
 					document.getElementById("logpass").placeholder = 'File: ' + filename
@@ -142,7 +148,9 @@
 					// var file = window.URL.createObjectURL(blob);
 					// window.location.assign(file);
 					if(filename!=''){
-					download(blob, filename, "application/octet-stream");}else{
+					download(blob, filename, "application/octet-stream");
+					document.getElementById("getBtn2").innerText = 'Downloaded';
+				}else{
 						document.getElementById("getBtn2").innerText = 'Download'
 					}
 			})

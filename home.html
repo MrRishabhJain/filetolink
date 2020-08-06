@@ -107,13 +107,14 @@
 
 				
 				document.getElementById("getBtn2").innerText = 'checking'
-
 				fetch('http://52.136.120.54:5000/lookup?key='+key)
 				.then((resp) => {
-				return resp.text();//.json(); // or resp.text() or whatever the server sends
+					console.log('stat',resp.status())
+					return resp.text();//.json(); // or resp.text() or whatever the server sends
 				})
 				.then( filename => {
 					if (filename!='Error!'){
+
 					gkey = document.getElementById("logpass").value
 					document.getElementById("logpass").value = ''
 					document.getElementById("logpass").placeholder = 'File: ' + filename

@@ -7,6 +7,11 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/.well-known/pki-validation/529C5F524D8170AF40D3D580CDD604D9.txt', methods=['GET'])
+def cert():  # pragma: no cover
+    content = open('529C5F524D8170AF40D3D580CDD604D9.txt').read()
+    return Response(content, mimetype="text/plain")
+
 @app.route('/', methods=['GET'])
 def home():  # pragma: no cover
     content = open('index.html').read()
@@ -19,7 +24,7 @@ def css():  # pragma: no cover
 
 @app.route('/favicon.ico')
 def favicon():  # pragma: no cover
-	return send_from_directory('/','favicon.ico', mimetype='image/vnd.microsoft.icon')
+	return send_from_directory('','favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/upload')
 def upload_file1():

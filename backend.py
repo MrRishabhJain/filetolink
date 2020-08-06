@@ -17,6 +17,11 @@ def css():  # pragma: no cover
     content = open('public/home.css').read()
     return Response(content, mimetype="text/css")
 
+@app.route('/favicon.ico', methods=['GET'])
+def css():  # pragma: no cover
+    content = open('public/favicon.ico').read()
+    return Response(content, mimetype="image/x-icon")
+
 @app.route('/upload')
 def upload_file1():
 	return render_template('home.html')

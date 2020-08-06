@@ -9,17 +9,17 @@ CORS(app)
 
 @app.route('/', methods=['GET'])
 def home():  # pragma: no cover
-    content = open('public/index.html').read()
+    content = open('index.html').read()
     return Response(content, mimetype="text/html")
 
 @app.route('/home.css', methods=['GET'])
 def css():  # pragma: no cover
-    content = open('public/home.css').read()
+    content = open('home.css').read()
     return Response(content, mimetype="text/css")
 
 @app.route('/favicon.ico')
 def favicon():  # pragma: no cover
-	return send_from_directory('public/','favicon.ico', mimetype='image/vnd.microsoft.icon')
+	return send_from_directory('/','favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/upload')
 def upload_file1():

@@ -20,8 +20,6 @@ def css():  # pragma: no cover
 @app.route('/favicon.ico')
 def favicon():  # pragma: no cover
 	return send_from_directory('public/','favicon.ico', mimetype='image/vnd.microsoft.icon')
-    # content = open('public/favicon.ico').read()
-    # return Response(content, mimetype="image/vnd.microsoft.icon")
 
 @app.route('/upload')
 def upload_file1():
@@ -51,12 +49,13 @@ def lookup_file():
 	key = request.args.get("key")
 	if os.path.isdir(str(key)):
 		os.chdir(str(key))
-		_tmp=os.listdir()[0]
-		os.chdir('../../')
-		return _tmp
-	else:
+		if len(os.listdir())>0
+			_tmp=os.listdir()[0]
+			os.chdir('../../')
+			return _tmp
 		os.chdir('../')
-		return 'Error!'
+	os.chdir('../')
+	return 'Error!'
 
 	
 @app.route('/uploader', methods = ['GET', 'POST'])

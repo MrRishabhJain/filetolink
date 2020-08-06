@@ -105,16 +105,15 @@
 
 			if (document.getElementById("getBtn2").innerText == "LOOKUP") {
 
-				
+				var stat = 0
 				document.getElementById("getBtn2").innerText = 'checking'
 				fetch('http://52.136.120.54:5000/lookup?key='+key)
 				.then((resp) => {
-					console.log('stat',resp.status())
+					stat = resp.status
 					return resp.text();//.json(); // or resp.text() or whatever the server sends
 				})
 				.then( filename => {
-					if (filename!='Error!'){
-
+					if (filename!='Error!' && stat==200){
 					gkey = document.getElementById("logpass").value
 					document.getElementById("logpass").value = ''
 					document.getElementById("logpass").placeholder = 'File: ' + filename

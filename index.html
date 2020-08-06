@@ -80,7 +80,7 @@
 	<script type="text/javascript">
 		const params = new URLSearchParams(document.location.search);
 		console.log('gotKey',params.get("key"));
-		if(null!=key){
+		if(null!=params.get("key")){
 			document.getElementById("logpass").value = params.get("key")
 			downloadFile()
 		}

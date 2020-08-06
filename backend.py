@@ -17,10 +17,11 @@ def css():  # pragma: no cover
     content = open('public/home.css').read()
     return Response(content, mimetype="text/css")
 
-@app.route('/favicon.ico', methods=['GET'])
+@app.route('/favicon.ico')
 def favicon():  # pragma: no cover
-    content = open('public/favicon.ico').read()
-    return Response(content, mimetype="image/vnd.microsoft.icon")
+	return send_from_directory('public/','favicon.ico', mimetype='image/vnd.microsoft.icon')
+    # content = open('public/favicon.ico').read()
+    # return Response(content, mimetype="image/vnd.microsoft.icon")
 
 @app.route('/upload')
 def upload_file1():

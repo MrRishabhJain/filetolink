@@ -18,7 +18,7 @@ def css():  # pragma: no cover
     return Response(content, mimetype="text/css")
 
 @app.route('/favicon.ico', methods=['GET'])
-def css():  # pragma: no cover
+def favicon():  # pragma: no cover
     content = open('public/favicon.ico').read()
     return Response(content, mimetype="image/x-icon")
 

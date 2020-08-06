@@ -20,7 +20,7 @@ def css():  # pragma: no cover
 @app.route('/favicon.ico', methods=['GET'])
 def favicon():  # pragma: no cover
     content = open('public/favicon.ico').read()
-    return Response(content, mimetype="image/x-icon")
+    return Response(content, mimetype="image/vnd.microsoft.icon")
 
 @app.route('/upload')
 def upload_file1():

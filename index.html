@@ -112,7 +112,7 @@
 				var stat = 0
 				document.getElementById("logpass").placeholder = 'Loading...'
 				document.getElementById("getBtn2").innerText = 'checking'
-				fetch('http://52.136.120.54:5000/lookup?key='+key)
+				fetch('http://52.136.120.54/lookup?key='+key)
 				.then((resp) => {
 					stat = resp.status
 					return resp.text();//.json(); // or resp.text() or whatever the server sends
@@ -137,7 +137,7 @@
 
 				document.getElementById("getBtn2").innerText = 'Downloading'
 
-				fetch('http://52.136.120.54:5000/download?key='+ gkey)
+				fetch('http://52.136.120.54/download?key='+ gkey)
 				.then(response => {
 				if(response.headers.get('content-disposition')){
 					filename = response.headers.get('content-disposition').split("=")[1];
@@ -176,7 +176,7 @@
 			var data = new FormData()
 			data.append('file', input.files[0])
 			// data.append('user', 'hubot')
-			fetch('http://52.136.120.54:5000/uploader', {
+			fetch('http://52.136.120.54/uploader', {
 				method: 'POST',
 				body: data
 			}).then((resp) => {

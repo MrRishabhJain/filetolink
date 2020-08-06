@@ -170,7 +170,6 @@
 			} else if (document.getElementById("getBtn").innerText == "UPLOAD"){
 				console.log('getBtn',document.getElementById('getBtn'))
 				uploadFetch()
-				document.getElementById("getBtn").innerText = "copy link"
 			} else {
 				navigator.clipboard.writeText('https://mrrishabhjain.github.io/filetolink/?key='+gkey)
 			}
@@ -192,7 +191,7 @@
 				document.getElementById("fileName1").innerText = 'Your File Key is '+body;
 				// document.getElementById("codeVar").innerHtml = body;
 				gkey = body
-				document.getElementById("getBtn").innerText = 'uploaded';
+				document.getElementById("getBtn").innerText = 'copy link';
 				// TODO handle body
 			}).catch((error) => {
 				 console.log('err', body)

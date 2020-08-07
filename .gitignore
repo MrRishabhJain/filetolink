@@ -1,3 +1,4 @@
 
 *.pyc
 ca_bundle.crt
+*.key

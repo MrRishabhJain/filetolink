@@ -116,6 +116,7 @@
 			if (document.getElementById("getBtn2").innerText == "LOOKUP") {
 
 				var stat = 0
+				document.getElementById("logpass").blur();
 				document.getElementById("logpass").placeholder = 'Loading...'
 				document.getElementById("getBtn2").innerText = 'checking'
 				fetch('https://52.136.120.54:5500/lookup?key='+key)
